@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionService } from '../action.service';
+import { ActionService } from '../../../services/action/action.service';
 import { Router } from '@angular/router';
 
 export type ActionType = {
