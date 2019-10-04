@@ -7,10 +7,10 @@ import { ActionDetailComponent } from './components/action/action-detail/action-
 import { ActionListComponent } from './components/action/action-list/action-list.component';
 import { VolunteerDetailComponent } from './components/volunteer/volunteer-detail/volunteer-detail.component';
 import { VolunteerListComponent } from './components/volunteer/volunteer-list/volunteer-list.component';
-import { InstitutionListComponent } from './institution-list/institution-list.component';
-import { InstitutionDetailComponent } from './institution-detail/institution-detail.component';
-import { NeedyPointListComponent } from './needy-point-list/needy-point-list.component';
-import { NeedyPointDetailComponent } from './needy-point-detail/needy-point-detail.component';
+import { InstitutionListComponent } from './components/institution/institution-list/institution-list.component';
+import { InstitutionDetailComponent } from './components/institution/institution-detail/institution-detail.component';
+import { NeedyPointListComponent } from './components/needy-point/needy-point-list/needy-point-list.component';
+import { NeedyPointDetailComponent } from './components/needy-point/needy-point-detail/needy-point-detail.component';
 
 @NgModule({
   declarations: [
