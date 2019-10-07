@@ -25,13 +25,14 @@ export class ActionListComponent implements OnInit {
 
   actions: Array<ActionType>;
   action: ActionType;
-  constructor(private service: ActionService, private router: Router) { }
+  // constructor(private service: ActionService, private router: Router) { }
+  constructor() {}
 
   ngOnInit() {
-    this.service.getActions().subscribe(actions => this.actions = actions);
+    // this.service.getActions().subscribe(actions => this.actions = actions);
   }
 
-  openAction(id: number) {
-    this.router.navigate(['/action', id]);
-  }
+  // openAction(id: number) {
+  //   this.router.navigate(['/action', id]);
+  // }
 }
