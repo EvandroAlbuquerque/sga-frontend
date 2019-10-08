@@ -1,1 +1,16 @@
-<p>action-list works!</p>
+<p align="center">AÇÕES</p>
+
+<table>
+        <tr>
+            <th>RESPONSÁVEL</th>
+            <th>CONTATO</th>
+            <th>HORÁRIO</th>
+            <th>ENDEREÇO</th>
+        </tr>
+        <tr *ngFor="let action of actions">
+            <td>{{action.responsible.name}}</td>
+            <td>{{action.responsible.contact.phone}} - {{action.responsible.contact.email}}</td>
+            <td>{{action.hour}}</td>
+            <td>{{action.place.street}}, {{action.place.number}}, {{action.place.district}}</td>
+        </tr>
+    </table>

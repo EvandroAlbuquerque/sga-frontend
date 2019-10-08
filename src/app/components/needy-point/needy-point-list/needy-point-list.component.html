@@ -1,1 +1,14 @@
-<p>needy-point-list works!</p>
+<p align="center">PONTOS CARENTES</p>
+
+<table>
+        <tr>
+            <th>DESCRIÇÃO</th>
+            <th>ENDEREÇO</th>
+            <th>OBSERVAÇÃO</th>
+        </tr>
+        <tr *ngFor="let needyPoint of needyPoints">
+            <td>{{needyPoint.description}}</td>
+            <td>{{needyPoint.address.street}}, {{needyPoint.address.number}}, {{needyPoint.address.district}}</td>
+            <td>{{needyPoint.obs}}</td>
+        </tr>
+    </table>
