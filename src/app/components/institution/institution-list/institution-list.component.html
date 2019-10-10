@@ -2,13 +2,11 @@
 
 <table>
     <tr>
-        <th>ID</th>
         <th>NOME</th>
         <th>CONTATOS</th>
         <th>ENDEREÇO</th>
     </tr>
     <tr *ngFor="let institution of institutions">
-        <td>{{institution.id}}</td>
         <td>{{institution.name}}</td>
         <td>{{institution.contact.phone}} - {{institution.contact.email}}</td>
         <td>{{institution.address.street}}, {{institution.address.number}}, {{institution.address.district}}    </td>

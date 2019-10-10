@@ -1,4 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { NeedyPointService } from '../../../services/needy-point/needy-point.service';
+import { Router } from '@angular/router';
+
+export type NeedyPointType = {
+  id: number;
+  description: String;
+  obs: String;
+  address: {
+    postalCode: String;
+    street: String;
+    number: number;
+    district: String;
+  }
+}
 
 @Component({
   selector: 'app-needy-point-list',
@@ -7,15 +21,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NeedyPointListComponent implements OnInit {
 
-  needyPoints=[
-    {"id": 1, "description": "Teste Ponto carente 1 mock", "obs": "Obs ponto carente 1 mock", "address": {"postalCode": "58000001", "district": "centro", "number": 11, "street": "rua do ponto carente 1 mock"}},
-    {"id": 2, "description": "Teste Ponto carente 2 mock", "obs": "Obs ponto carente 2 mock", "address": {"postalCode": "58000002", "district": "centro", "number": 22, "street": "rua do ponto carente 2 mock"}},
-    {"id": 3, "description": "Teste Ponto carente 3 mock", "obs": "Obs ponto carente 3 mock", "address": {"postalCode": "58000003", "district": "centro", "number": 33, "street": "rua do ponto carente 3 mock"}}
-  ]
+  // needyPoints=[
+  //   {"id": 1, "description": "Teste Ponto carente 1 mock", "obs": "Obs ponto carente 1 mock", "address": {"postalCode": "58000001", "district": "centro", "number": 11, "street": "rua do ponto carente 1 mock"}},
+  //   {"id": 2, "description": "Teste Ponto carente 2 mock", "obs": "Obs ponto carente 2 mock", "address": {"postalCode": "58000002", "district": "centro", "number": 22, "street": "rua do ponto carente 2 mock"}},
+  //   {"id": 3, "description": "Teste Ponto carente 3 mock", "obs": "Obs ponto carente 3 mock", "address": {"postalCode": "58000003", "district": "centro", "number": 33, "street": "rua do ponto carente 3 mock"}}
+  // ]
 
-  constructor() { }
+  needyPoints: Array<NeedyPointType>;
+
+  constructor(private service: NeedyPointService, private router: Router) { }
 
   ngOnInit() {
+    this.service.getNeedyPoints().subscribe(needyPoints => this.needyPoints = needyPoints);
   }
 
 }

@@ -10,7 +10,7 @@ export class ActionService {
 
   constructor(private http: HttpClient) { }
 
-  private actionsUrl = 'http://localhost:8080/api/action/'
+  private actionsUrl = 'http://localhost:8080/api/action/';
   
   getActions(): Observable<ActionType[]> {
     return this.http.get<ActionType[]>(this.actionsUrl)

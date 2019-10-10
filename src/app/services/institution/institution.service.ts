@@ -10,9 +10,9 @@ export class InstitutionService {
 
   constructor(private http: HttpClient) { }
 
-  private actionsUrl = 'http://localhost:8080/api/action/'
+  private institutionsUrl = 'http://localhost:8080/api/institution/';
   
-  getActions(): Observable<InstitutionType[]> {
-    return this.http.get<InstitutionType[]>(this.institutionssUrl)
+  getInstitutions(): Observable<InstitutionType[]> {
+    return this.http.get<InstitutionType[]>(this.institutionsUrl)
   }
 }
