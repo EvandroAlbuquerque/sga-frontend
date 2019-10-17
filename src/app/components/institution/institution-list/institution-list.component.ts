@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 export type InstitutionType = {
   id: number;
   name: String;
+  description: String;
   address: {
     postalCode: String;
     street: String;

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 export type ActionType = {
   id: number;
   responsible: String;
+  description: String;
   place: {
     postalCode: String;
     street: String;
