@@ -31,6 +31,7 @@ export class ActionListComponent implements OnInit {
   // ]
 
   actions: Array<ActionType>;
+  showForm = false;
   // action: ActionType;
   constructor(private service: ActionService, private router: Router) { }
   // constructor() {}

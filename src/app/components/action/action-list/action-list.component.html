@@ -1,6 +1,32 @@
 <p align="center">AÇÕES</p>
 
-<button>NOVA AÇÃO</button>
+<button id="btnCad" (click)="showForm = !showForm">NOVA AÇÃO</button>
+
+<div *ngIf="showForm">
+    <form action="" method="post">
+        <div>
+            RESPONSÁVEL: <input type="text" name="responsible">
+        </div>
+        <div>
+            DESCRIÇÃO: <input type="text" name="description">
+        </div>
+        <div class="row">
+            ENDEREÇO:
+            Cep: <input type="text" name="postalCode">
+            Rua/Avenida: <input type="text" name="street">
+            Número: <input type="text" name="number">
+            Bairro: <input type="text" name="district">
+        </div>
+        <div>
+            HORÁRIO: <input type="text" name="hour" >
+        </div>
+        <div>
+            OBSERVAÇÃO: <input type="text" name="obs">
+        </div>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</div>
 
 <table>
         <tr>
