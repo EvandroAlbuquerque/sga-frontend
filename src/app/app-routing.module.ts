@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'acao', component: ActionListComponent },
   { path: 'instituicao', component: InstitutionListComponent },
   { path: 'pontocarente', component: NeedyPointListComponent },
-  { path: 'voluntario', component: VolunteerListComponent }
+  // { path: 'voluntario', component: VolunteerListComponent }
 ];
 
 @NgModule({
