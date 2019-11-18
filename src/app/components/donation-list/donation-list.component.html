@@ -31,6 +31,7 @@
             <th>CATEGORIA</th>
             <th>ITEM</th>
             <th>DESCRIÇÃO</th>
+            <th>ENCAMINHADO PARA</th>
         </tr>
     </thead>
     <tbody>
@@ -38,6 +39,15 @@
             <td>{{donation.category}}</td>
             <td>{{donation.name}}</td>
             <td>{{donation.description}}</td>
+            <td *ngIf="donation.forwardedTo != null">{{donation.forwardedTo}}</td>
+            <td *ngIf="donation.forwardedTo == null">
+                 <form action="forwardTo" method="post">
+                    <select *ngFor='let institution of institutions' class="custom-select col-md-3">
+                        <option name="institution" value="institution.id">{{ institution.name }}</option>
+                    </select>
+                    <button type="submit">Encaminhar</button>
+                 </form>
+            </td>
         </tr>
     </tbody>
     </table>
