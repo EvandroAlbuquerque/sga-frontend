@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ActionType } from '../../components/action/action-list/action-list.component';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +15,14 @@ export class ActionService {
   constructor(private http: HttpClient) { }
 
   private actionsUrl = 'http://localhost:8080/api/action/';
-  
+
   getActions(): Observable<ActionType[]> {
     return this.http.get<ActionType[]>(this.actionsUrl)
   }
 
-  // postAction(newAction: ActionType): Observable<ActionType> {
-  //   return this.http.post<ActionType>(this.actionsUrl, newAction);
-  // }
+  postAction(newAction: ActionType): Observable<ActionType> {
+    return this.http.post<ActionType>(this.actionsUrl+'add', newAction, httpOptions);
+  }
 
   // getAction(id: number): Observable<ActionType> {
   //   return this.http.get<ActionType>(this.actionsUrl+id);

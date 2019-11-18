@@ -1,5 +1,3 @@
-<p align="center">PONTOS CARENTES</p>
-
 <div align="right">
     <button class="btn btn-info" id="btnCad" (click)="showForm = !showForm">Registrar Ponto Carente</button>
 </div>
@@ -44,17 +42,24 @@
             <input type="submit" class="btn btn-primary" value="Cadastrar">
         </div>
     </form>
+    <p></p>
 </div>
 
-<table>
+<p align="center">PONTOS CARENTES</p>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>DESCRIÇÃO</th>
             <th>ENDEREÇO</th>
             <th>OBSERVAÇÃO</th>
         </tr>
+    </thead>
+    <tbody>
         <tr *ngFor="let needyPoint of needyPoints">
             <td>{{needyPoint.description}}</td>
             <td>{{needyPoint.address.street}}, {{needyPoint.address.number}}, {{needyPoint.address.district}}</td>
             <td>{{needyPoint.obs}}</td>
         </tr>
-    </table>
+    </tbody>
+</table>

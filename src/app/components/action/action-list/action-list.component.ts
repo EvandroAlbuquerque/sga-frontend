@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionService } from '../../../services/action/action.service';
 import { Router } from '@angular/router';
+import { VolunteerType } from '../../volunteer/volunteer-list/volunteer-list.component';
+import { VolunteerService } from 'src/app/services/volunteer/volunteer.service';
 
 export type ActionType = {
   id: number;
@@ -31,13 +33,14 @@ export class ActionListComponent implements OnInit {
   // ]
 
   actions: Array<ActionType>;
+  volunteers: Array<VolunteerType>
   showForm = false;
-  // action: ActionType;
-  constructor(private service: ActionService, private router: Router) { }
-  // constructor() {}
+
+  constructor(private service: ActionService, private volunteerService: VolunteerService, private router: Router) {}
 
   ngOnInit() {
     this.service.getActions().subscribe(actions => this.actions = actions);
+    this.volunteerService.getVolunteers().subscribe(volunteers => this.volunteers = volunteers);
   }
 
   // openAction(id: number) {

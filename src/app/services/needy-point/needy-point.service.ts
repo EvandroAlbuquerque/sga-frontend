@@ -10,7 +10,7 @@ export class NeedyPointService {
 
   constructor(private http: HttpClient) { }
 
-  private needyPointsUrl = 'http://localhost:8080/api/needypoint/'
+  private needyPointsUrl = 'http://localhost:8080/api/needy-point/'
   
   getNeedyPoints(): Observable<NeedyPointType[]> {
     return this.http.get<NeedyPointType[]>(this.needyPointsUrl)

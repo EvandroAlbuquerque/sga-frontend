@@ -24,9 +24,17 @@ export type VolunteerType = {
 })
 export class VolunteerListComponent implements OnInit {
 
-  constructor() { }
+  volunteers: Array<VolunteerType>;
+  volunteer: VolunteerType;
+
+  constructor(private service: VolunteerService, private router: Router) { }
 
   ngOnInit() {
+    this.service.getVolunteers().subscribe(volunteers => this.volunteers = volunteers);
+  }
+
+  postVolunteer(volunteer: VolunteerType): void {
+    this.service.postVolunteer(volunteer).subscribe(volunteer => this.volunteers.push(volunteer));
   }
 
 }
