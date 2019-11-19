@@ -1,62 +1,66 @@
 <div align="right">
-        <button class="btn btn-info" id="btnCad" (click)="showForm = !showForm">Cadastrar Voluntário</button>
+    <button class="btn btn-info" id="btnCad" (click)="showForm = !showForm">Cadastrar Voluntário</button>
+</div>
+    
+<form *ngIf="showForm" [formGroup]="volunteerForm" (ngSubmit)="postVolunteer()">
+    
+    <label>
+        Nome:
+        <input type="text" formControlName="name">
+    </label>
+
+    <p><b>CONTATOS</b></p>
+    <div class="form-group" formGroupName="contact">
+        <label>
+            Telefone:
+            <input type="number" formControlName="phone">
+        </label>
+        <label>
+            Email:
+            <input type="email" formControlName="email">
+        </label>
     </div>
     
-    <form *ngIf="showForm" [formGroup]="volunteerForm">
+    <p><b>ENDEREÇO</b></p>
+    <div class="form-group" formGroupName="address">
         <label>
-            Nome:
-            <input type="text" formControlName="name">
+            Rua:
+            <input type="text" formControlName="street">
         </label>
+        <label>
+            Número:
+            <input type="number" formControlName="number">
+        </label>
+        <label>
+            Bairro:
+            <input type="text" formControlName="district">
+        </label>
+        <label>
+            Cep:
+            <input type="number" formControlName="postalCode">
+        </label>
+    </div>
 
-        <p><b>CONTATOS</b></p>
-        <div formGroupName="contact">
-            <label>
-                Telefone:
-                <input type="number" formControlName="phone">
-            </label>
-            <label>
-                Email:
-                <input type="email" formControlName="email">
-            </label>
-        </div>
-        
-        <p><b>ENDEREÇO</b></p>
-        <div formGroupName="address">
-            <label>
-                Rua:
-                <input type="text" formControlName="street">
-            </label>
-            <label>
-                Número:
-                <input type="number" formControlName="number">
-            </label>
-            <label>
-                Bairro:
-                <input type="text" formControlName="district">
-            </label>
-            <label>
-                Cep:
-                <input type="number" formControlName="postalCode">
-            </label>
-        </div>
-    </form>
-    
-    <p align="center">VOLUNTÁRIOS CADASTRADOS</p>
-    
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th>NOME</th>
-                <th>CONTATOS</th>
-                <th>ENDEREÇO</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let volunteer of volunteers">
-                <td>{{volunteer.name}}</td>
-                <td>{{volunteer.contact.phone}} / {{volunteer.contact.email}}</td>
-                <td>{{volunteer.address.street}}, {{volunteer.address.number}}, {{volunteer.address.district}}</td>
-            </tr>
-        </tbody>
-    </table>
-    
+    <div align="right">
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </div>
+</form>
+
+<p align="center">VOLUNTÁRIOS CADASTRADOS</p>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>NOME</th>
+            <th>CONTATOS</th>
+            <th>ENDEREÇO</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let volunteer of volunteers">
+            <td>{{volunteer.name}}</td>
+            <td>{{volunteer.contact.phone}} / {{volunteer.contact.email}}</td>
+            <td>{{volunteer.address.street}}, {{volunteer.address.number}}, {{volunteer.address.district}}</td>
+        </tr>
+    </tbody>
+</table>
