@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VolunteerService } from '../../../services/volunteer/volunteer.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 export type VolunteerType = {
   id: number;
@@ -26,6 +27,20 @@ export class VolunteerListComponent implements OnInit {
 
   volunteers: Array<VolunteerType>;
   volunteer: VolunteerType;
+
+  volunteerForm = new FormGroup({
+    name: new FormControl(''),
+    contact: new FormGroup({
+      phone: new FormControl(''),
+      email: new FormControl('')
+    }),
+    address: new FormGroup({
+      street: new FormControl(''),
+      postalCode: new FormControl(''),
+      number: new FormControl(''),
+      district: new FormControl('')
+    })
+  });
 
   constructor(private service: VolunteerService, private router: Router) { }
 
