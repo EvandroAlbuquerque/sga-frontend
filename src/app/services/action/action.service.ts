@@ -15,13 +15,14 @@ export class ActionService {
   constructor(private http: HttpClient) { }
 
   private actionsUrl = 'http://localhost:8080/api/action/';
+  private actionPostUrl = 'http://localhost:8080/api/action/add';
 
   getActions(): Observable<ActionType[]> {
-    return this.http.get<ActionType[]>(this.actionsUrl)
+    return this.http.get<ActionType[]>(this.actionsUrl);
   }
 
-  postAction(newAction: ActionType): Observable<ActionType> {
-    return this.http.post<ActionType>(this.actionsUrl+'add', newAction, httpOptions);
+  postAction(action: ActionType): Observable<ActionType> {
+    return this.http.post<ActionType>(this.actionPostUrl, action, httpOptions);
   }
 
   // getAction(id: number): Observable<ActionType> {
