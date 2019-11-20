@@ -42,7 +42,7 @@ export class ActionListComponent implements OnInit {
     responsible: new FormControl(''),
     description: new FormControl(''),
     hour: new FormControl(''),
-    obg: new FormControl(''),
+    obs: new FormControl(''),
     address: new FormGroup({
       street: new FormControl(''),
       number: new FormControl(''),
