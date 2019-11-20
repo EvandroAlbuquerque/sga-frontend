@@ -16,6 +16,10 @@
         Descrição:
         <input type="text" formControlName="description">
     </label>
+
+    <div align="right">
+        <input type="submit" class="btn btn-primary" value="Cadastrar">
+    </div>
 </form>
 
 <p align="center">DOAÇÕES</p>
@@ -36,11 +40,11 @@
             <td>{{donation.description}}</td>
             <td *ngIf="donation.forwardedTo != null">{{donation.forwardedTo}}</td>
             <td *ngIf="donation.forwardedTo == null">
-                 <form action="forwardTo" method="post">
+                 <form>
                     <select *ngFor='let institution of institutions' class="custom-select col-md-3">
                         <option name="institution" value="institution.id">{{ institution.name }}</option>
                     </select>
-                    <button type="submit">Encaminhar</button>
+                    <button class="btn btn-primary" type="submit">Encaminhar</button>
                  </form>
             </td>
         </tr>
