@@ -3,25 +3,20 @@
 </div>
 
 
-<div *ngIf="showForm">
-    <form action="" method="post">
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="inputCategory">Categoria:</label>
-                <input type="text" class="form-control" id="inputCategory" name="category" placeholder="Digite a categoria do item:" />
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputResponsable">Item:</label>
-                <input type="text" class="form-control" id="inputItem" name="item" placeholder="Digite o nome do item:" />
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputDescription">Descrição:</label>
-                <input type="textarea" class="form-control" id="inputDescription" name="description" placeholder="Digite uma breve descrição do ítem:" />
-            </div>
-        </div>
-    </form>
-    <p></p>
-</div>
+<form *ngIf="showForm" [formGroup]="donationForm" (ngSubmit)="addDonation()">
+    <label>
+        Categoria:
+        <input type="text" formControlName="category">
+    </label>
+    <label>
+        Nome:
+        <input type="text" formControlName="name">
+    </label>
+    <label>
+        Descrição:
+        <input type="text" formControlName="description">
+    </label>
+</form>
 
 <p align="center">DOAÇÕES</p>
 
