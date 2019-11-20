@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NeedyPointService } from '../../../services/needy-point/needy-point.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { VolunteerType } from '../../volunteer/volunteer-list/volunteer-list.component';
 
-export type NeedyPointType = {
+export interface NeedyPointType {
   id: number;
-  description: String;
-  obs: String;
+  description: string;
+  obs: string;
   address: {
-    postalCode: String;
-    street: String;
+    postalCode: string;
+    street: string;
     number: number;
-    district: String;
+    district: string;
   }
 }
 
@@ -28,11 +30,29 @@ export class NeedyPointListComponent implements OnInit {
   // ]
 
   needyPoints: Array<NeedyPointType>;
+  needyPoint: NeedyPointType;
+
+  needyPointForm = new FormGroup({
+    description: new FormControl(''),
+    obs: new FormControl(''),
+    address: new FormGroup({
+      street: new FormControl(''),
+      postalCode: new FormControl(''),
+      number: new FormControl(''),
+      district: new FormControl('')
+    })
+  });
 
   constructor(private service: NeedyPointService, private router: Router) { }
 
   ngOnInit() {
     this.service.getNeedyPoints().subscribe(needyPoints => this.needyPoints = needyPoints);
+  }
+
+  addNeedyPoint(needyPoint: NeedyPointType): void {
+    needyPoint = this.needyPointForm.value;
+    // tslint:disable-next-line: no-shadowed-variable
+    this.service.postNeedyPoint(needyPoint).subscribe(needyPoint => this.needyPoints.push(needyPoint));
   }
 
 }
