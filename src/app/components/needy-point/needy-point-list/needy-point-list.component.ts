@@ -30,7 +30,7 @@ export class NeedyPointListComponent implements OnInit {
   // ]
 
   needyPoints: Array<NeedyPointType>;
-  needyPoint: NeedyPointType;
+  // needyPoint: NeedyPointType;
 
   needyPointForm = new FormGroup({
     description: new FormControl(''),
