@@ -3,56 +3,53 @@
 </div>
 
 
-<div *ngIf="showForm">
-    <form action="" method="post">
+<form *ngIf="showForm" [formGroup]="actionForm" (ngSubmit)="addAction()">
+    <label>
+        Responsável:
         <select *ngFor='let volunteer of volunteers' class="custom-select col-md-3">
-            <option name="volunteer" value="volunteer.id">{{ volunteer.name }}</option>
+            <option value="volunteer.id" formControlName="responsible">{{ volunteer.name }}</option>
         </select>
+    </label>
 
-        <div class="form-group">
-            <label for="inputDescription">Descrição:</label>
-            <input type="textarea" class="form-control" id="inputDescription" name="description" placeholder="Digite uma breve descrição:" />
-        </div>
-        
-        <div class="form-row">
-            <div class="form-group col-md-1">
-                <label for="inputHour">Hora:</label>
-                <input type="text" class="form-control" id="inputHour" name="hour" placeholder="Digite a hora da ação:"/>
-            </div>
+    <label>
+        Descrição:
+        <input type="text" formControlName="description">
+    </label>
 
-            <div class="form-group col-md-2">
-                <label for="inputPostalCode">Cep:</label>
-                <input type="text" class="form-control" id="inputPostalCode" name="postalCode" placeholder="Digite o CEP:" />
-            </div>
+    <label>
+        Hora:
+        <input type="time" formControlName="hour">
+    </label>
 
-            <div class="form-group col-md-5">
-                <label for="inputStreet">Rua/Avenida:</label>
-                <input type="text" class="form-control" id="inputStreet" name="street" placeholder="Digite o nome da rua/avenida:" />
-            </div>
+    <p><b>ENDEREÇO</b></p>
+    <div class="form-group" formGroupName="address">
+        <label>
+            Cep:
+            <input type="number" formControlName="postalCode">
+        </label>
+        <label>
+            Rua:
+            <input type="text" formControlName="street">
+        </label>
+        <label>
+            Número:
+            <input type="number" formControlName="number">
+        </label>
+        <label>
+            Bairro:
+            <input type="text" formControlName="district">
+        </label>
+    </div>
+    
+    <label>
+        Observação:
+        <input type="text" formControlName="obs">
+    </label>
 
-            <div class="form-group col-md-1">
-                <label for="inputNumber">Número:</label>
-                <input type="text" class="form-control" id="inputNumber" name="number" placeholder="Digite o número:" />
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="inputDistrict">Bairro:</label>
-                <input type="text" class="form-control" id="inputDistrict" name="district" placeholder="Digite o nome do bairro:" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="inputObs">Observação:</label>
-            <input type="text" class="form-control" id="inputObs" name="obs" placeholder="Digite uma observação ou alerta se necessário:" />
-        </div>
-        
-
-        <div align="right">
-            <input type="submit" class="btn btn-primary" value="Cadastrar">
-        </div>
-    </form>
-    <p></p>
-</div>
+    <div align="right">
+        <input type="submit" class="btn btn-primary" value="Cadastrar">
+    </div>
+</form>
 
 <p align="center">AÇÕES SOCIAIS</p>
 
