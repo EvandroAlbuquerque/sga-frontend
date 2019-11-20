@@ -14,13 +14,14 @@ export class VolunteerService {
 
   constructor(private http: HttpClient) { }
 
-  private volunteersUrl = 'http://localhost:8080/api/volunteer/'
-  
+  private volunteersUrl = 'http://localhost:8080/api/volunteer/';
+  private addVolunteerUrl = 'http://localhost:8080/api/volunteer/add';
+
   getVolunteers(): Observable<VolunteerType[]> {
-    return this.http.get<VolunteerType[]>(this.volunteersUrl)
+    return this.http.get<VolunteerType[]>(this.volunteersUrl);
   }
 
   postVolunteer(volunteer: VolunteerType): Observable<VolunteerType> {
-    return this.http.post<VolunteerType>(this.volunteersUrl+'add', volunteer, httpOptions);
+    return this.http.post<VolunteerType>(this.addVolunteerUrl, volunteer, httpOptions);
   }
 }

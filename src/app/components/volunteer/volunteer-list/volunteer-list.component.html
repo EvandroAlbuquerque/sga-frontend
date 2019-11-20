@@ -2,7 +2,7 @@
     <button class="btn btn-info" id="btnCad" (click)="showForm = !showForm">Cadastrar Voluntário</button>
 </div>
     
-<form *ngIf="showForm" [formGroup]="volunteerForm" (ngSubmit)="postVolunteer()">
+<form *ngIf="showForm" [formGroup]="volunteerForm" (ngSubmit)="addVolunteer()">
     
     <label>
         Nome:

@@ -3,19 +3,19 @@ import { VolunteerService } from '../../../services/volunteer/volunteer.service'
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
-export type VolunteerType = {
+export interface VolunteerType {
   id: number;
-  name: String;
+  name: string;
   address: {
-    postalCode: String;
-    street: String;
+    postalCode: number;
+    street: string;
     number: number;
-    district: String;
-  }
+    district: string;
+  };
   contact: {
-    email: String;
-    phone: String;
-  }
+    email: string;
+    phone: number;
+  };
 }
 
 @Component({
@@ -48,7 +48,9 @@ export class VolunteerListComponent implements OnInit {
     this.service.getVolunteers().subscribe(volunteers => this.volunteers = volunteers);
   }
 
-  postVolunteer(volunteer: VolunteerType): void {
+  addVolunteer(volunteer: VolunteerType): void {
+    volunteer = this.volunteerForm.value;
+    // tslint:disable-next-line: no-shadowed-variable
     this.service.postVolunteer(volunteer).subscribe(volunteer => this.volunteers.push(volunteer));
   }
 
