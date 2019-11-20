@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { InstitutionService } from '../../../services/institution/institution.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
-export type InstitutionType = {
+export interface InstitutionType {
   id: number;
-  name: String;
-  description: String;
+  name: string;
+  initials: string;
+  description: string;
   address: {
-    postalCode: String;
-    street: String;
+    postalCode: string;
+    street: string;
     number: number;
-    district: String;
-  }
+    district: string;
+  };
   contact: {
-    email: String;
-    phone: String;
-  }
+    email: string;
+    phone: string;
+  };
 }
 
 @Component({
@@ -32,11 +34,34 @@ export class InstitutionListComponent implements OnInit {
   // ]
 
   institutions: Array<InstitutionType>;
+  // institution: InstitutionType;
+
+  institutionForm = new FormGroup({
+    name: new FormControl(''),
+    initials: new FormControl(''),
+    description: new FormControl(''),
+    address: new FormGroup({
+      street: new FormControl(''),
+      number: new FormControl(''),
+      postalCode: new FormControl(''),
+      district: new FormControl('')
+    }),
+    contact: new FormGroup({
+      phone: new FormControl(''),
+      email: new FormControl('')
+    }),
+  });
 
   constructor(private service: InstitutionService, private router: Router) { }
 
   ngOnInit() {
     this.service.getInstitutions().subscribe(institutions => this.institutions = institutions);
+  }
+
+  addInstitution(institution: InstitutionType): void {
+    institution = this.institutionForm.value;
+    // tslint:disable-next-line: no-shadowed-variable
+    this.service.postInstitution(institution).subscribe(institution => this.institutions.push(institution));
   }
 
 }
