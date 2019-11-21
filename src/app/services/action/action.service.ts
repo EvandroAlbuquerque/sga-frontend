@@ -14,15 +14,21 @@ export class ActionService {
 
   constructor(private http: HttpClient) { }
 
-  private actionsUrl = 'http://localhost:8080/api/action/';
+  private actionUrl = 'http://localhost:8080/api/action/';
   private actionPostUrl = 'http://localhost:8080/api/action/add';
 
   getActions(): Observable<ActionType[]> {
-    return this.http.get<ActionType[]>(this.actionsUrl);
+    return this.http.get<ActionType[]>(this.actionUrl);
   }
 
   postAction(action: ActionType): Observable<ActionType> {
-    return this.http.post<ActionType>(this.actionPostUrl, action, httpOptions);
+    const postUrl = this.actionUrl + 'add';
+    return this.http.post<ActionType>(postUrl, action, httpOptions);
+  }
+
+  deleteAction(action: ActionType): void {
+    const deleteUrl = this.actionUrl;
+    this.http.delete(deleteUrl).subscribe((response => {console.log('Action deleted!'); }));
   }
 
   // getAction(id: number): Observable<ActionType> {
@@ -33,8 +39,5 @@ export class ActionService {
   //   return this.http.put<ActionType>(this.actionsUrl+id, editedAction);
   // }
 
-  // deleteAction(id:number): Observable<{}> {
-  //   return this.http.delete(this.actionsUrl+id)
-  // }
 
 }

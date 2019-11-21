@@ -3,7 +3,7 @@
 </div>
 
 
-<form *ngIf="showForm" [formGroup]="institutionForm" (ngSubmit)="addInstitution()">
+<form *ngIf="showForm" [formGroup]="institutionForm" (ngSubmit)="add()">
     <label>
         Nome:
         <input type="text" formControlName="name">
@@ -65,6 +65,7 @@
             <th>SIGLA</th>
             <th>CONTATOS</th>
             <th>ENDEREÇO</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -72,6 +73,9 @@
             <td>{{institution.name}}</td>
             <td>{{institution.contact.phone}} - {{institution.contact.email}}</td>
             <td>{{institution.address.street}}, {{institution.address.number}}, {{institution.address.district}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="delete(institution)">Remover</button>
+            </td>
         </tr>
     </tbody>
 </table>

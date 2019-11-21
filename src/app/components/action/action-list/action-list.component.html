@@ -3,7 +3,7 @@
 </div>
 
 
-<form *ngIf="showForm" [formGroup]="actionForm" (ngSubmit)="addAction()">
+<form *ngIf="showForm" [formGroup]="actionForm" (ngSubmit)="add()">
     <label>
         Responsável:
         <select class="custom-select" formControlName="responsible">
@@ -61,6 +61,7 @@
             <th>CONTATO</th>
             <th>HORÁRIO</th>
             <th>ENDEREÇO</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -70,6 +71,9 @@
             <td>{{action.responsible.contact.phone}} - {{action.responsible.contact.email}}</td>
             <td>{{action.hour}}</td>
             <td>{{action.address.street}}, {{action.address.number}}, {{action.address.district}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="delete(action)">Remover</button>
+            </td>
         </tr>
     </tbody>
     </table>

@@ -49,10 +49,15 @@ export class NeedyPointListComponent implements OnInit {
     this.service.getNeedyPoints().subscribe(needyPoints => this.needyPoints = needyPoints);
   }
 
-  addNeedyPoint(needyPoint: NeedyPointType): void {
+  add(needyPoint: NeedyPointType): void {
     needyPoint = this.needyPointForm.value;
     // tslint:disable-next-line: no-shadowed-variable
     this.service.postNeedyPoint(needyPoint).subscribe(needyPoint => this.needyPoints.push(needyPoint));
+  }
+
+  delete(needyPoint: NeedyPointType): void {
+    this.service.deleteNeedyPoint(needyPoint);
+    this.ngOnInit();
   }
 
 }

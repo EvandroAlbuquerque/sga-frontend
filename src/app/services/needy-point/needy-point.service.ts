@@ -14,13 +14,18 @@ export class NeedyPointService {
 
   constructor(private http: HttpClient) { }
 
-  private needyPointsUrl = 'http://localhost:8080/api/needy-point/'
-  private addNeedyPointUrl = 'http://localhost:8080/api/needy-point/add'
+  private needyPointUrl = 'http://localhost:8080/api/needy-point/'
   
   getNeedyPoints(): Observable<NeedyPointType[]> {
-    return this.http.get<NeedyPointType[]>(this.needyPointsUrl);
+    return this.http.get<NeedyPointType[]>(this.needyPointUrl);
   }
   postNeedyPoint(needyPoint: NeedyPointType): Observable<NeedyPointType> {
-    return this.http.post<NeedyPointType>(this.addNeedyPointUrl, needyPoint, httpOptions);
+    const postUrl = this.needyPointUrl + 'add';
+    return this.http.post<NeedyPointType>(postUrl, needyPoint, httpOptions);
+  }
+
+  deleteNeedyPoint(needyPoint: NeedyPointType): void {
+    const deleteUrl = this.needyPointUrl + 'delete/' + needyPoint.id;
+    this.http.delete(deleteUrl).subscribe((response => {console.log('Needy Point deleted!'); }));
   }
 }

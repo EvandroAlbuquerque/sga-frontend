@@ -3,7 +3,7 @@
 </div>
 
 
-<form *ngIf="showForm" [formGroup]="needyPointForm" (ngSubmit)="addNeedyPoint()">
+<form *ngIf="showForm" [formGroup]="needyPointForm" (ngSubmit)="add()">
     <label>
         Descrição:
         <input type="text" formControlName="description">
@@ -46,6 +46,7 @@
             <th>DESCRIÇÃO</th>
             <th>ENDEREÇO</th>
             <th>OBSERVAÇÃO</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +54,9 @@
             <td>{{needyPoint.description}}</td>
             <td>{{needyPoint.address.street}}, {{needyPoint.address.number}}, {{needyPoint.address.district}}</td>
             <td>{{needyPoint.obs}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="delete(needyPoint)">Remover</button>
+            </td>
         </tr>
     </tbody>
 </table>

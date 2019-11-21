@@ -14,14 +14,19 @@ export class InstitutionService {
 
   constructor(private http: HttpClient) { }
 
-  private institutionsUrl = 'http://localhost:8080/api/institution/';
-  private institutionPostUrl = 'http://localhost:8080/api/institution/add';
+  private institutionUrl = 'http://localhost:8080/api/institution/';
 
   getInstitutions(): Observable<InstitutionType[]> {
-    return this.http.get<InstitutionType[]>(this.institutionsUrl);
+    return this.http.get<InstitutionType[]>(this.institutionUrl);
   }
 
   postInstitution(institution: InstitutionType): Observable<InstitutionType> {
-    return this.http.post<InstitutionType>(this.institutionPostUrl, institution, httpOptions);
+    const postUrl = this.institutionUrl + 'add';
+    return this.http.post<InstitutionType>(postUrl, institution, httpOptions);
+  }
+
+  deleteInstitution(institution: InstitutionType): void {
+    const deleteUrl = this.institutionUrl + 'delete/' + institution.id;
+    this.http.delete(deleteUrl).subscribe((response => {console.log('Institution deleted!'); }));
   }
 }

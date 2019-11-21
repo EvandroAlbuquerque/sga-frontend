@@ -48,10 +48,15 @@ export class VolunteerListComponent implements OnInit {
     this.service.getVolunteers().subscribe(volunteers => this.volunteers = volunteers);
   }
 
-  addVolunteer(volunteer: VolunteerType): void {
+  add(volunteer: VolunteerType): void {
     volunteer = this.volunteerForm.value;
     // tslint:disable-next-line: no-shadowed-variable
     this.service.postVolunteer(volunteer).subscribe(volunteer => this.volunteers.push(volunteer));
+  }
+
+  delete(volunteer: VolunteerType): void {
+    this.service.deleteVolunteer(volunteer);
+    this.ngOnInit();
   }
 
 }

@@ -2,7 +2,7 @@
     <button class="btn btn-info" id="btnCad" (click)="showForm = !showForm">Cadastrar Voluntário</button>
 </div>
     
-<form *ngIf="showForm" [formGroup]="volunteerForm" (ngSubmit)="addVolunteer()">
+<form *ngIf="showForm" [formGroup]="volunteerForm" (ngSubmit)="add()">
     
     <label>
         Nome:
@@ -54,6 +54,7 @@
             <th>NOME</th>
             <th>CONTATOS</th>
             <th>ENDEREÇO</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -61,6 +62,9 @@
             <td>{{volunteer.name}}</td>
             <td>{{volunteer.contact.phone}} / {{volunteer.contact.email}}</td>
             <td>{{volunteer.address.street}}, {{volunteer.address.number}}, {{volunteer.address.district}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="delete(volunteer)">Remover</button>
+            </td>
         </tr>
     </tbody>
 </table>

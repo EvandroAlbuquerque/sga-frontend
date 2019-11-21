@@ -10,6 +10,11 @@ export interface DonationType {
   description: string;
 }
 
+export interface ForwardDonationType {
+  donationId: number;
+  institutionId: number;
+}
+
 @Component({
   selector: 'app-donation-list',
   templateUrl: './donation-list.component.html',
@@ -26,16 +31,26 @@ export class DonationListComponent implements OnInit {
     description: new FormControl('')
   });
 
+  forwardDonationForm = new FormGroup({
+    donationId: new FormControl(''),
+    institutionId: new FormControl('')
+  });
+
   constructor(private service: DonationService, private router: Router) { }
 
   ngOnInit() {
     this.service.getDonations().subscribe(donations => this.donations = donations);
   }
 
-  addDonation(donation: DonationType): void {
+  add(donation: DonationType): void {
     donation = this.donationForm.value;
     // tslint:disable-next-line: no-shadowed-variable
     this.service.postDonation(donation).subscribe(donation => this.donations.push(donation));
+  }
+
+  delete(donation: DonationType): void {
+    this.service.deleteDonation(donation);
+    this.ngOnInit();
   }
 
 }

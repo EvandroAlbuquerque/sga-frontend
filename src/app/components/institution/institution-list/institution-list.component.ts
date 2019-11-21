@@ -58,10 +58,15 @@ export class InstitutionListComponent implements OnInit {
     this.service.getInstitutions().subscribe(institutions => this.institutions = institutions);
   }
 
-  addInstitution(institution: InstitutionType): void {
+  add(institution: InstitutionType): void {
     institution = this.institutionForm.value;
     // tslint:disable-next-line: no-shadowed-variable
     this.service.postInstitution(institution).subscribe(institution => this.institutions.push(institution));
+  }
+
+  delete(institution: InstitutionType): void {
+    this.service.deleteInstitution(institution);
+    this.ngOnInit();
   }
 
 }

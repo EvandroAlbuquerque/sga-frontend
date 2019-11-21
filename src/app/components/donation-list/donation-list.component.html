@@ -3,7 +3,7 @@
 </div>
 
 
-<form *ngIf="showForm" [formGroup]="donationForm" (ngSubmit)="addDonation()">
+<form *ngIf="showForm" [formGroup]="donationForm" (ngSubmit)="add()">
     <label>
         Categoria:
         <input type="text" formControlName="category">
@@ -30,7 +30,7 @@
             <th>CATEGORIA</th>
             <th>ITEM</th>
             <th>DESCRIÇÃO</th>
-            <th>ENCAMINHADO PARA</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -38,14 +38,8 @@
             <td>{{donation.category}}</td>
             <td>{{donation.name}}</td>
             <td>{{donation.description}}</td>
-            <td *ngIf="donation.forwardedTo != null">{{donation.forwardedTo}}</td>
-            <td *ngIf="donation.forwardedTo == null">
-                 <form>
-                    <select *ngFor='let institution of institutions' class="custom-select col-md-3">
-                        <option name="institution" value="institution.id">{{ institution.name }}</option>
-                    </select>
-                    <button class="btn btn-primary" type="submit">Encaminhar</button>
-                 </form>
+            <td>
+                <button class="btn btn-primary" (click)="delete(donation)">Remover</button>
             </td>
         </tr>
     </tbody>

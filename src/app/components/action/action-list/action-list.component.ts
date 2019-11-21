@@ -36,7 +36,7 @@ export class ActionListComponent implements OnInit {
   actions: Array<ActionType>;
   // action: ActionType;
   volunteers: Array<VolunteerType>;
-  showForm = false;
+  // showForm = false;
 
   actionForm = new FormGroup({
     responsible: new FormControl(''),
@@ -58,10 +58,15 @@ export class ActionListComponent implements OnInit {
     this.volunteerService.getVolunteers().subscribe(volunteers => this.volunteers = volunteers);
   }
 
-  addAction(action: ActionType): void {
+  add(action: ActionType): void {
     action = this.actionForm.value;
     // tslint:disable-next-line: no-shadowed-variable
     this.service.postAction(action).subscribe(action => this.actions.push(action));
+  }
+
+  delete(action: ActionType): void {
+    this.service.deleteAction(action);
+    this.ngOnInit();
   }
 
   // openAction(id: number) {
