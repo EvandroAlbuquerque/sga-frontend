@@ -15,7 +15,6 @@ export class ActionService {
   constructor(private http: HttpClient) { }
 
   private actionUrl = 'http://localhost:8080/api/action/';
-  private actionPostUrl = 'http://localhost:8080/api/action/add';
 
   getActions(): Observable<ActionType[]> {
     return this.http.get<ActionType[]>(this.actionUrl);
@@ -27,7 +26,7 @@ export class ActionService {
   }
 
   deleteAction(action: ActionType): void {
-    const deleteUrl = this.actionUrl;
+    const deleteUrl = this.actionUrl + 'delete/' + action.id;
     this.http.delete(deleteUrl).subscribe((response => {console.log('Action deleted!'); }));
   }
 
